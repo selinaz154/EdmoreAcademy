@@ -3,105 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edmore Academy | College Prep & Tutoring</title>
+  <title>Edmore Academy | College Prep and Tutoring</title>
   <style>
+    /* ======= Global Styles ======= */
     body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background-color: #f8fafc;
       margin: 0;
-      padding: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8fafc;
       color: #333;
+      line-height: 1.6;
     }
+    a {
+      text-decoration: none;
+      color: #1b3b6f;
+    }
+    h1, h2 {
+      color: #1b3b6f;
+    }
+
+    /* ======= Header ======= */
     header {
-      background-color: #1b3b6f;
+      background: linear-gradient(to right, #1b3b6f, #0077b6);
       color: white;
       text-align: center;
-      padding: 50px 10px;
+      padding: 80px 20px;
     }
     header h1 {
-      font-size: 2.4em;
+      font-size: 2.8rem;
       margin: 0;
     }
     header p {
-      font-size: 1.2em;
+      font-size: 1.2rem;
       margin-top: 10px;
+      color: #e3f2fd;
     }
+
+    /* ======= Navigation ======= */
     nav {
       background: #142850;
       text-align: center;
-      padding: 10px 0;
+      padding: 15px 0;
     }
     nav a {
       color: white;
-      text-decoration: none;
-      margin: 0 15px;
       font-weight: bold;
+      margin: 0 15px;
+      transition: 0.3s;
     }
     nav a:hover {
-      text-decoration: underline;
+      color: #ffd166;
     }
+
+    /* ======= Section Layout ======= */
     section {
-      max-width: 900px;
-      margin: 40px auto;
+      max-width: 1000px;
+      margin: 50px auto;
       padding: 20px;
       background: white;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
-    h2 {
-      color: #1b3b6f;
+
+    /* ======= Programs ======= */
+    ul {
+      list-style-type: square;
+      margin-left: 20px;
     }
-    footer {
-      background: #eaeaea;
+
+    /* ======= Testimonials ======= */
+    .testimonial {
+      background: #f1f5f9;
+      padding: 15px 20px;
+      border-left: 4px solid #1b3b6f;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* ======= Payment ======= */
+    .payment-container {
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      margin-top: 40px;
+    }
+    .payment-container p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+    }
+    .pay-button {
+      background-color: #0077b6;
+      color: white;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .pay-button:hover {
+      background-color: #1b3b6f;
+    }
+
+    /* ======= Contact ======= */
+    .contact-info {
+      line-height: 1.8;
+    }
+    .contact-info a {
+      color: #0077b6;
+      font-weight: bold;
+    }
+
+    /* ======= Footer ======= */
+    footer {
+      background: #1b3b6f;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    /* ======= Responsive Design ======= */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        margin: 20px;
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Edmore Academy</h1>
-    <p>College Prep • Tutoring • Academic Growth</p>
+    <p>Empowering Students for College and Beyond</p>
   </header>
 
   <nav>
     <a href="#about">About</a>
     <a href="#programs">Programs</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#payment">Pay for Courses</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <section id="about">
     <h2>About Us</h2>
     <p>
-      Edmore Academy is a college prep and tutoring program dedicated to helping students reach their academic potential. 
-      Our mission is to equip every student with the skills, confidence, and mindset to succeed in school and beyond.
+      Edmore Academy is a premier college prep and tutoring school based in California. 
+      We are committed to helping students strengthen their academic foundation, 
+      build confidence, and achieve success in competitive academic environments. 
+      Our instructors bring years of teaching experience and a passion for guiding 
+      students toward their academic and personal goals.
     </p>
   </section>
 
   <section id="programs">
-    <h2>Programs</h2>
+    <h2>Our Programs</h2>
     <ul>
-      <li>College Admissions Counseling</li>
-      <li>Writing and English Enrichment</li>
-      <li>Mathematics and SAT Prep</li>
-      <li>AP and Honors Course Support</li>
-      <li>Study Skills and Academic Coaching</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>
-      📍 Based in California <br />
-      📧 Email: <a href="mailto:info@edmoreacademy.org">info@edmoreacademy.org</a> <br />
-      📞 Phone: (626) 461-8854
-    </p>
-  </section>
-
-  <footer>
-    <p>© 2025 Edmore Academy | Empowering Students for Success</p>
-  </footer>
-</body>
-</html>
+      <li><strong>College Admissions Counseling:</strong> Personalized guidance for college applications, essays, and interviews.</li>
+      <li><strong>Writing & English Enrichment:</strong> Creative and analytical writing skills for middle and high school students.</li>
+      <li><strong>Mathematics & SAT/ACT Prep:</strong> Structured sessions to strengthen problem-solving and test performance.</li>
+      <li><strong>AP & Honors Tutoring:</strong> Advanced subject tutoring in STEM and humanities courses.</li>
+      <li><strong>Academic Coach
