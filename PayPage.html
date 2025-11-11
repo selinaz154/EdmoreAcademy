@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Edmore Academy</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo-section">
+      <img src="logo.png" alt="Edmore Academy Logo" class="logo" />
+      <div class="title-text">
+        <h1>Edmore Academy</h1>
+        <p>Counseling, tutoring, and courses</p>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="#" class="login-btn">Log In</a>
+    </nav>
+  </header>
+
+  <main class="content pay-section fade-in">
+    <h2 class="section-title">Course Registration</h2>
+    <p class="section-subtitle">Please fill out your details to complete registration.</p>
+
+    <form class="payment-form">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com" required>
+
+      <label for="course">Select Course</label>
+      <select id="course">
+        <option>Creative Writing Level 1</option>
+        <option>Algebra 1</option>
+        <option>AP Calculus AB</option>
+        <option>TOEFL / IELTS Prep</option>
+        <option>College Counseling</option>
+      </select>
+
+      <label for="payment">Payment Method</label>
+      <select id="payment">
+        <option>Credit Card</option>
+        <option>PayPal</option>
+        <option>Bank Transfer</option>
+      </select>
+
+      <button type="submit" class="register-btn">Proceed to Payment</button>
+    </form>
+  </main>
+</body>
+</html>

@@ -6,6 +6,7 @@
   <title>Courses | Edmore Academy</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -28,6 +29,7 @@
     </nav>
   </header>
 
+  <!-- BACKGROUND OVERLAY -->
   <div class="fixed-bg"></div>
 
   <!-- MAIN CONTENT -->
@@ -36,7 +38,7 @@
       <h2 class="section-title">Explore Our Courses</h2>
       <p class="section-subtitle">Select a grade and subject to find your perfect class</p>
 
-      <!-- Filter bar -->
+      <!-- FILTER BAR -->
       <div class="filter-row">
         <div class="filter-group">
           <label>Grade Level:</label>
@@ -61,82 +63,98 @@
         </div>
       </div>
 
-      <!-- Course List -->
+      <!-- COURSE LIST -->
       <div id="course-list" class="course-list">
         <!-- Writing -->
         <div class="course-card writing elementary">
-          <h3>Creative Writing Level 1</h3>
+          <h3><i class="fa-solid fa-pen-nib"></i> Creative Writing Level 1</h3>
           <p><strong>Grades 3–5</strong> • Build sentence fluency, story ideas, and self-expression.</p>
+          <a href="PayPage.html?course=Creative%20Writing%20Level%201" class="register-btn">Register Now</a>
         </div>
         <div class="course-card writing middle">
-          <h3>Writing Level 2 – Structure & Clarity</h3>
+          <h3><i class="fa-solid fa-pencil"></i> Writing Level 2 – Structure & Clarity</h3>
           <p><strong>Grades 6–8</strong> • Learn paragraph transitions, topic development, and descriptive writing.</p>
+          <a href="PayPage.html?course=Writing%20Level%202" class="register-btn">Register Now</a>
         </div>
         <div class="course-card writing high">
-          <h3>Advanced Essay Writing</h3>
+          <h3><i class="fa-solid fa-book"></i> Advanced Essay Writing</h3>
           <p><strong>Grades 9–12</strong> • Master analytical and argumentative essays for AP and college prep.</p>
+          <a href="PayPage.html?course=Advanced%20Essay%20Writing" class="register-btn">Register Now</a>
         </div>
 
         <!-- Math -->
         <div class="course-card math elementary">
-          <h3>Math Fundamentals</h3>
+          <h3><i class="fa-solid fa-shapes"></i> Math Fundamentals</h3>
           <p><strong>Grades 3–5</strong> • Numbers, fractions, and early problem-solving fun!</p>
+          <a href="PayPage.html?course=Math%20Fundamentals" class="register-btn">Register Now</a>
         </div>
         <div class="course-card math middle">
-          <h3>Pre-Algebra</h3>
+          <h3><i class="fa-solid fa-square-root-variable"></i> Pre-Algebra</h3>
           <p><strong>Grades 6–8</strong> • Build a bridge between arithmetic and algebraic reasoning.</p>
+          <a href="PayPage.html?course=Pre-Algebra" class="register-btn">Register Now</a>
         </div>
         <div class="course-card math high">
-          <h3>Geometry & Algebra 1</h3>
+          <h3><i class="fa-solid fa-ruler-combined"></i> Geometry & Algebra 1</h3>
           <p><strong>Grades 9–10</strong> • Explore geometric proofs, graphing, and advanced logic.</p>
+          <a href="PayPage.html?course=Geometry%20%26%20Algebra%201" class="register-btn">Register Now</a>
         </div>
         <div class="course-card math high">
-          <h3>AP Calculus AB</h3>
+          <h3><i class="fa-solid fa-calculator"></i> AP Calculus AB</h3>
           <p><strong>Grades 11–12</strong> • Limits, derivatives, integrals, and problem-solving mastery.</p>
+          <a href="PayPage.html?course=AP%20Calculus%20AB" class="register-btn">Register Now</a>
         </div>
 
         <!-- Science -->
         <div class="course-card science middle">
-          <h3>General Science</h3>
+          <h3><i class="fa-solid fa-flask"></i> General Science</h3>
           <p><strong>Grades 6–8</strong> • Discover earth, life, and physical sciences through experiments.</p>
+          <a href="PayPage.html?course=General%20Science" class="register-btn">Register Now</a>
         </div>
         <div class="course-card science high">
-          <h3>AP Biology</h3>
+          <h3><i class="fa-solid fa-dna"></i> AP Biology</h3>
           <p><strong>Grades 11–12</strong> • Prepare for the AP exam through lab analysis and data interpretation.</p>
+          <a href="PayPage.html?course=AP%20Biology" class="register-btn">Register Now</a>
         </div>
         <div class="course-card science high">
-          <h3>Physics Fundamentals</h3>
+          <h3><i class="fa-solid fa-atom"></i> Physics Fundamentals</h3>
           <p><strong>Grades 10–12</strong> • Understand motion, forces, and energy through hands-on projects.</p>
+          <a href="PayPage.html?course=Physics%20Fundamentals" class="register-btn">Register Now</a>
         </div>
 
         <!-- Exam Prep -->
         <div class="course-card exam high">
-          <h3>SAT English & Reading</h3>
+          <h3><i class="fa-solid fa-book-open"></i> SAT English & Reading</h3>
           <p><strong>Grades 10–12</strong> • Improve comprehension and grammar through timed practice.</p>
+          <a href="PayPage.html?course=SAT%20English%20%26%20Reading" class="register-btn">Register Now</a>
         </div>
         <div class="course-card exam high">
-          <h3>SAT Math Mastery</h3>
+          <h3><i class="fa-solid fa-square-root-variable"></i> SAT Math Mastery</h3>
           <p><strong>Grades 10–12</strong> • Strategy, pacing, and accuracy for higher test scores.</p>
+          <a href="PayPage.html?course=SAT%20Math%20Mastery" class="register-btn">Register Now</a>
         </div>
         <div class="course-card exam college">
-          <h3>TOEFL / IELTS Preparation</h3>
+          <h3><i class="fa-solid fa-globe"></i> TOEFL / IELTS Preparation</h3>
           <p><strong>College Prep</strong> • Focused lessons on listening, reading, and speaking skills.</p>
+          <a href="PayPage.html?course=TOEFL%20%2F%20IELTS%20Preparation" class="register-btn">Register Now</a>
         </div>
 
         <!-- Counseling -->
         <div class="course-card counseling high">
-          <h3>Academic Planning & Counseling</h3>
+          <h3><i class="fa-solid fa-user-graduate"></i> Academic Planning & Counseling</h3>
           <p><strong>Grades 9–12</strong> • Build study plans, set academic goals, and manage stress effectively.</p>
+          <a href="PayPage.html?course=Academic%20Planning%20%26%20Counseling" class="register-btn">Register Now</a>
         </div>
         <div class="course-card counseling college">
-          <h3>College Admissions Advising</h3>
+          <h3><i class="fa-solid fa-university"></i> College Admissions Advising</h3>
           <p><strong>College Prep</strong> • Essay review, résumé feedback, and school selection guidance.</p>
+          <a href="PayPage.html?course=College%20Admissions%20Advising" class="register-btn">Register Now</a>
         </div>
       </div>
     </section>
   </main>
 
   <script>
+    // Filter Logic
     const gradeFilter = document.getElementById('grade-filter');
     const subjectFilter = document.getElementById('subject-filter');
     const courses = document.querySelectorAll('.course-card');

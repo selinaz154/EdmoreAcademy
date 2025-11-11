@@ -378,8 +378,48 @@ body {
 }
 
 
+/* 🧾 PAYMENT PAGE FORM */
+.pay-section {
+  padding: 100px 15%;
+  color: #092c5c;
+}
+
+.payment-form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.payment-form label {
+  font-weight: 600;
+  color: #0b2e59;
+}
+
+.payment-form input,
+.payment-form select {
+  padding: 10px 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.payment-form input:focus,
+.payment-form select:focus {
+  border-color: #e67e22;
+  outline: none;
+}
+
+
 
 /* Ensure content doesn't hide behind the navbar */
 main.content {
   margin-top: 120px; /* creates space under fixed navbar */
 }
+
