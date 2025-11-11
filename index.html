@@ -4,38 +4,164 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edmore Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo-section">
       <img src="logo.png" alt="Edmore Academy Logo" class="logo" />
       <div class="title-text">
-        <h1>Edmore Academy</h1>
-        <p>Counseling, tutoring, and courses</p>
+        <h1 data-en="Edmore Academy" data-zh="爱德蒙学院">Edmore Academy</h1>
+        <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询・个性辅导・学术课程">Counseling, tutoring, and courses</p>
       </div>
     </div>
     <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="courses.html">Courses</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="#" class="login-btn">Log In</a>
+      <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+      <a href="about.html" data-en="About" data-zh="关于我们">About</a>
+      <a href="courses.html" data-en="Courses" data-zh="课程">Courses</a>
+      <a href="gallery.html" data-en="Gallery" data-zh="相册">Gallery</a>
+      <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
+      <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
     </nav>
   </header>
 
+  <!-- HERO SECTION -->
   <section class="hero-banner">
     <div class="hero-content">
-      <h2>Welcome to <span>Edmore Academy</span></h2>
-      <p>Where learning meets inspiration — discover your potential through our personalized counseling and tutoring programs.</p>
-      <a href="courses.html" class="cta-btn">Explore Courses</a>
+      <h2 data-en="Welcome to <span>Edmore Academy</span>" 
+          data-zh="欢迎来到 <span>爱德蒙学院</span>">Welcome to <span>Edmore Academy</span></h2>
+      <p data-en="Where learning meets inspiration — discover your potential through our personalized counseling and tutoring programs."
+         data-zh="在这里，学习与灵感相遇——通过我们的个性化辅导与咨询，发现你的无限潜能。">
+         Where learning meets inspiration — discover your potential through our personalized counseling and tutoring programs.
+      </p>
+      <a href="courses.html" class="cta-btn" data-en="Explore Courses" data-zh="查看课程">Explore Courses</a>
     </div>
   </section>
 
-  <section class="intro-section">
+  <!-- STATS SECTION -->
+  <section class="stats-section">
+    <div class="stat left">
+      <h3><span class="counter" data-target="85">0</span>+</h3>
+      <p data-en="Expert Tutors" data-zh="专业导师">Expert Tutors</p>
+    </div>
+
+    <div class="stat center">
+      <h3><span class="counter" data-target="12">0</span>+</h3>
+      <p data-en="Years of Academic Excellence" data-zh="多年学术卓越">Years of Academic Excellence</p>
+    </div>
+
+    <div class="stat right">
+      <h3><span class="counter" data-target="1500">0</span>+</h3>
+      <p data-en="Students Empowered" data-zh="学生成长见证">Students Empowered</p>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS SECTION -->
+  <section class="program-section">
+    <div class="program-container">
+      <div class="program-card blue">
+        <img src="logo.png" alt="Undergraduate Icon">
+        <div class="text">
+          <h4 data-en="Undergraduate Direct Admission" data-zh="本科直录">本科直录</h4>
+          <p data-en="Partner schools guarantee admission with flexible or no score requirements — fast offer results."
+             data-zh="合作学校确保录取方案，降低或无固定成绩要求，可快速出录取。">
+             合作学校确保录取方案，降低或无固定成绩要求，可快速出录取。
+          </p>
+        </div>
+      </div>
+
+      <div class="program-card red">
+        <img src="logo.png" alt="Graduate Icon">
+        <div class="text">
+          <h4 data-en="Graduate Direct Admission" data-zh="研究生直录">研究生直录</h4>
+          <p data-en="Guaranteed master’s admission through partner universities with fast-track approval."
+             data-zh="合作学校/项目确保录取方案，降低或无固定成绩要求，可快速出录取。">
+             合作学校/项目确保录取方案，降低或无固定成绩要求，可快速出录取。
+          </p>
+        </div>
+      </div>
+
+      <div class="program-card yellow">
+        <img src="logo.png" alt="Transfer Icon">
+        <div class="text">
+          <h4 data-en="1+2 Transfer Pathway" data-zh="转学直达1+2">转学直达1+2</h4>
+          <p data-en="Early completion of transfer requirements with full guidance to top universities."
+             data-zh="提前完成转学课程要求，全程辅导，确保转入名校。">
+             提前完成转学课程要求，全程辅导，确保转入名校。
+          </p>
+        </div>
+      </div>
+
+      <div class="program-card teal">
+        <img src="logo.png" alt="UC Program Icon">
+        <div class="text">
+          <h4 data-en="UC 2+2 Program" data-zh="UC（加州大学）2+2">UC（加州大学）2+2</h4>
+          <p data-en="Guaranteed transfer from community college to UC campuses including UCB, UCLA, UCSD, and more."
+             data-zh="CC转学至UCB、UCLA、UCI、UCSD、UCSB、UCD、UCR确保录取方案。">
+             CC转学至UCB、UCLA、UCI、UCSD、UCSB、UCD、UCR确保录取方案。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKSHELF AT THE BOTTOM -->
+  <section class="bottom-image">
     <img src="bookshelf.png" alt="Bookshelf" class="bookshelf-img">
   </section>
+
+  <!-- SCRIPT -->
+  <script>
+    // ✅ Stats counter animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = target / speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    });
+    observer.observe(document.querySelector('.stats-section'));
+
+    // 🌐 Language toggle system
+    let currentLang = 'en';
+    function switchLanguage() {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        // Allow HTML inside tags like <span>
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+      });
+      document.getElementById('lang-toggle').textContent =
+        currentLang === 'en' ? '中文' : 'EN';
+    }
+    // initialize
+    document.getElementById('lang-toggle').addEventListener('click', e => {
+      e.preventDefault();
+      switchLanguage();
+    });
+  </script>
+
+  
 </body>
 </html>
