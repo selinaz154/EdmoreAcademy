@@ -15,7 +15,7 @@
       <img src="logo.png" alt="Edmore Academy Logo" class="logo" />
       <div class="title-text">
         <h1 data-en="Edmore Academy" data-zh="爱德蒙学院">Edmore Academy</h1>
-        <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询・个性辅导・学术课程">Counseling, tutoring, and courses</p>
+        <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询・个性辅导・学术课程・留学申请">Counseling, tutoring, courses, and College Applications</p>
       </div>
     </div>
     <nav class="nav-links">
@@ -28,36 +28,335 @@
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-banner">
-    <div class="hero-content">
-      <h2 data-en="Welcome to <span>Edmore Academy</span>" 
-          data-zh="欢迎来到 <span>爱德蒙学院</span>">Welcome to <span>Edmore Academy</span></h2>
-      <p data-en="Where learning meets inspiration — discover your potential through our personalized counseling and tutoring programs."
-         data-zh="在这里，学习与灵感相遇——通过我们的个性化辅导与咨询，发现你的无限潜能。">
-         Where learning meets inspiration — discover your potential through our personalized counseling and tutoring programs.
+
+  
+
+<!-- HERO SECTION (Parallax Scroll Effect) -->
+<section class="hero-banner" 
+  style="
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: 
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url('bulidings2.jpeg') center/cover no-repeat fixed;
+    overflow: hidden;
+  ">
+  
+  <div class="hero-content" 
+       style="position: relative; z-index: 2; max-width: 800px; padding: 0 20px;">
+    <h2 style="font-size: 3.5rem; color: #f1c40f; font-family: 'Poppins', sans-serif;">
+      Edmore Academy
+    </h2>
+    <p style="font-size: 1.2rem; margin: 20px 0;">
+      Where learning meets inspiration — discover your potential through our personalized counseling and tutoring programs.
+    </p>
+    <a href="courses.html" 
+       class="cta-btn"
+       style="
+         background-color: #f1c40f;
+         color: #0d1b2a;
+         font-weight: 700;
+         padding: 12px 25px;
+         border-radius: 6px;
+         text-decoration: none;
+         transition: 0.3s;
+       "
+       onmouseover="this.style.backgroundColor='#ffe073';"
+       onmouseout="this.style.backgroundColor='#f1c40f';">
+       Explore Courses
+    </a>
+  </div>
+</section>
+
+<!-- AUTO-VISUALIZATION SECTION (Parallax with arrows + manual change) -->
+<section id="auto-visualization"
+  style="
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 120px 0;
+    background: url('bulidings2.jpeg') center/cover fixed no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  ">
+  
+  <!-- Overlay for better contrast -->
+  <div style="
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 35, 51, 0.7);
+      z-index: 0;
+  "></div>
+
+  <div style="position: relative; z-index: 1;">
+    <h2 style="font-family:'Poppins',sans-serif; margin-bottom:20px;">
+      University Data Visualization
+    </h2>
+    
+    <!-- Graph Container -->
+    <div style="position: relative; display: inline-block;">
+      <button id="prevGraph" 
+        style="
+          position: absolute; 
+          left: -60px; 
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(255,255,255,0.2);
+          color: #fff;
+          border: none;
+          font-size: 2rem;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          cursor: pointer;
+          transition: background 0.3s;
+        "
+        onmouseover="this.style.background='rgba(255,255,255,0.4)'"
+        onmouseout="this.style.background='rgba(255,255,255,0.2)'">⬅</button>
+
+      <div id="graph" style="width:80vw; height:70vh; margin:auto; border-radius:10px; background:#1a2333;"></div>
+
+      <button id="nextGraph" 
+        style="
+          position: absolute; 
+          right: -60px; 
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(255,255,255,0.2);
+          color: #fff;
+          border: none;
+          font-size: 2rem;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          cursor: pointer;
+          transition: background 0.3s;
+        "
+        onmouseover="this.style.background='rgba(255,255,255,0.4)'"
+        onmouseout="this.style.background='rgba(255,255,255,0.2)'">➡</button>
+    </div>
+
+    <p id="graphTitle" style="margin-top:15px; color:#eee; font-size:1.2rem;">
+      Geographical Distribution
+    </p>
+  </div>
+</section>
+
+<!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+  // --- Random Data Generators ---
+  function generateGeoData(numPoints = 80) {
+    const lat = [], lon = [], text = [];
+    for (let i = 0; i < numPoints; i++) {
+      lat.push(25 + Math.random() * 20);
+      lon.push(-125 + Math.random() * 55);
+      text.push(`Location ${i + 1}`);
+    }
+    return { lat, lon, text };
+  }
+
+  function generateScatterData(numPoints = 180) {
+    const x = [], y = [], colors = [];
+    for (let i = 0; i < numPoints; i++) {
+      const rank = Math.random() * 250 + 1;
+      const admission = Math.random() * 100;
+      x.push(rank);
+      y.push(admission);
+      colors.push(admission);
+    }
+    return { x, y, colors };
+  }
+
+  // --- Create two charts ---
+  const geoData = generateGeoData();
+  const mapTrace = {
+    type: 'scattergeo',
+    mode: 'markers',
+    lat: geoData.lat,
+    lon: geoData.lon,
+    text: geoData.text,
+    marker: {
+      size: 8,
+      color: 'rgba(72, 239, 255, 0.8)',
+      line: { color: '#fff', width: 0.5 }
+    }
+  };
+
+  const mapLayout = {
+    geo: { scope: 'usa', projection: { type: 'albers usa' }, bgcolor: '#1a2333' },
+    margin: { t: 0, b: 0, l: 0, r: 0 },
+    paper_bgcolor: '#1a2333',
+    plot_bgcolor: '#1a2333'
+  };
+
+  const scatterData = generateScatterData();
+  const scatterTrace = {
+    x: scatterData.x,
+    y: scatterData.y,
+    mode: 'markers',
+    marker: {
+      color: scatterData.colors,
+      colorscale: 'Portland',
+      size: 10,
+      opacity: 0.85
+    },
+    type: 'scatter'
+  };
+
+  const scatterLayout = {
+    xaxis: { title: 'Rank', color: '#ccc', gridcolor: '#333' },
+    yaxis: { title: 'Admission Rate (%)', color: '#ccc', gridcolor: '#333', range: [0, 100] },
+    paper_bgcolor: '#1a2333',
+    plot_bgcolor: '#1a2333',
+    margin: { t: 30, b: 60, l: 60, r: 30 }
+  };
+
+  // --- Graph state ---
+  let currentIndex = 0;
+  const graphs = [
+    { trace: [mapTrace], layout: mapLayout, title: 'Geographical Distribution' },
+    { trace: [scatterTrace], layout: scatterLayout, title: 'Rank vs Admission Rate' }
+  ];
+
+  // --- Plot initial ---
+  const graphDiv = document.getElementById('graph');
+  const title = document.getElementById('graphTitle');
+  Plotly.newPlot(graphDiv, graphs[0].trace, graphs[0].layout, { displayModeBar: false });
+  title.textContent = graphs[0].title;
+
+  // --- Controls ---
+  function showGraph(index) {
+    const g = graphs[index];
+    Plotly.newPlot(graphDiv, g.trace, g.layout, { displayModeBar: false });
+    title.textContent = g.title;
+  }
+
+  document.getElementById('nextGraph').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % graphs.length;
+    showGraph(currentIndex);
+  });
+
+  document.getElementById('prevGraph').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + graphs.length) % graphs.length;
+    showGraph(currentIndex);
+  });
+</script>
+
+
+
+<!-- STATS SECTION (One-row, Elegant & Responsive) -->
+<section class="stats-section" 
+  style="
+    background: linear-gradient(180deg, #f9fafc 0%, #eef3f7 100%);
+    padding: 80px 5%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  ">
+
+  <div style="
+    max-width: 1300px; 
+    margin: auto; 
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+  ">
+
+    <div class="stat" style="flex: 1 1 150px; min-width: 150px;">
+      <h3 style="color:#1e3a5f; font-size:2.5rem; margin:0;">
+        <span class="counter" data-target="12">0</span>+
+      </h3>
+      <p style="color:#333; margin-top:8px;">
+        Years of Excellence<br><span style="color:#777;">多年教学经验</span>
       </p>
-      <a href="courses.html" class="cta-btn" data-en="Explore Courses" data-zh="查看课程">Explore Courses</a>
-    </div>
-  </section>
-
-  <!-- STATS SECTION -->
-  <section class="stats-section">
-    <div class="stat left">
-      <h3><span class="counter" data-target="85">0</span>+</h3>
-      <p data-en="Expert Tutors" data-zh="专业导师">Expert Tutors</p>
     </div>
 
-    <div class="stat center">
-      <h3><span class="counter" data-target="12">0</span>+</h3>
-      <p data-en="Years of Academic Excellence" data-zh="多年学术卓越">Years of Academic Excellence</p>
+    <div class="stat" style="flex: 1 1 150px; min-width: 150px;">
+      <h3 style="color:#1e3a5f; font-size:2.5rem; margin:0;">
+        <span class="counter" data-target="85">0</span>+
+      </h3>
+      <p style="color:#333; margin-top:8px;">
+        Expert Tutors<br><span style="color:#777;">专业导师团队</span>
+      </p>
     </div>
 
-    <div class="stat right">
-      <h3><span class="counter" data-target="1500">0</span>+</h3>
-      <p data-en="Students Empowered" data-zh="学生成长见证">Students Empowered</p>
+    <div class="stat" style="flex: 1 1 150px; min-width: 150px;">
+      <h3 style="color:#1e3a5f; font-size:2.5rem; margin:0;">
+        <span class="counter" data-target="1500">0</span>+
+      </h3>
+      <p style="color:#333; margin-top:8px;">
+        Students Empowered<br><span style="color:#777;">学员成长见证</span>
+      </p>
     </div>
-  </section>
+
+    <div class="stat" style="flex: 1 1 150px; min-width: 150px;">
+      <h3 style="color:#1e3a5f; font-size:2.5rem; margin:0;">
+        <span class="counter" data-target="2000">0</span>+
+      </h3>
+      <p style="color:#333; margin-top:8px;">
+        Offers Earned<br><span style="color:#777;">录取通知书</span>
+      </p>
+    </div>
+
+    <div class="stat" style="flex: 1 1 150px; min-width: 150px;">
+      <h3 style="color:#1e3a5f; font-size:2.5rem; margin:0;">
+        <span class="counter" data-target="700">0</span>+
+      </h3>
+      <p style="color:#333; margin-top:8px;">
+        Top 50 Offers<br><span style="color:#777;">世界名校录取</span>
+      </p>
+    </div>
+
+    
+
+    
+
+  </div>
+</section>
+
+<!-- Counter animation -->
+  <script>
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const update = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = target / speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            requestAnimationFrame(update);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        update();
+      });
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    });
+    observer.observe(document.querySelector('.stats-section'));
+  </script>
+
+
 
   <!-- FEATURE CARDS SECTION -->
   <section class="program-section">
@@ -107,6 +406,54 @@
       </div>
     </div>
   </section>
+
+
+  <!-- CONTACT US -->
+<!-- CONTACT US -->
+<section id="contact" class="contact-section">
+  <h2>Contact Us 联系我们</h2>
+
+  <form id="contactForm">
+    <div class="row">
+      <div class="field">
+        <label for="firstName">First Name 名</label>
+        <input id="firstName" name="firstName" type="text" />
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name 姓</label>
+        <input id="lastName" name="lastName" type="text" />
+      </div>
+    </div>
+
+
+    <div class="field required">
+      <label for="email">Email 邮箱 *</label>
+      <input id="email" name="email" type="email" required />
+    </div>
+
+    <div class="field">
+      <label for="subject">Subject(s) 主题</label>
+      <input id="subject" name="subject" type="text" />
+    </div>
+
+    <div class="field">
+      <label for="message">Leave us a message... 给我们留言</label>
+      <textarea id="message" name="message" rows="5"></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit 提交</button>
+  </form>
+
+  <div class="contact-info">
+    <p><strong>📧 Email:</strong> edmore.usoffice@gmail.com</p>
+    <p><strong>📞 Phone:</strong> +1 626-503-8082</p>
+    <p><strong>🌐 Website:</strong> <a href="https://edmoreacademy.com" target="_blank">edmoreacademy.com</a></p>
+    <p><strong>🏫 Address:</strong> 155 North Riverview Drive, Anaheim, CA 92808</p>
+    <p><strong>🏫 Address:</strong> 572 N Diamond Bar Blvd, Diamond Bar, CA 91765</p>
+  </div>
+</section>
+
+
 
   <!-- BOOKSHELF AT THE BOTTOM -->
   <section class="bottom-image">
@@ -163,5 +510,138 @@
   </script>
 
   
+
+<!-- 💬 Edmore AI Assistant Popup -->
+<div class="chat-popup" id="chatPopup" style="display: flex;">
+  <div class="chat-header">
+    <span>Edmore AI Assistant 🤖</span>
+    <button id="closeChat">&times;</button>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <!-- Default welcome message -->
+    <div class="assistant-msg">
+      您好！欢迎咨询 <strong>Edmore Academy</strong> 🌸<br><br>
+      Welcome to <strong>Edmore Academy</strong>!<br>
+      We’re here to help with <strong>courses</strong>, <strong>counseling</strong>, and <strong>admissions</strong>.<br><br>
+      Our consultant is available <strong>Mon–Fri, 10AM–12PM (PST)</strong>.<br>
+      If we miss your message, you can reach us anytime at:<br>
+      📧 <a href="mailto:edmore.usoffice@gmail.com">edmore.usoffice@gmail.com</a><br>
+      📞 <a href="tel:+16265038082">+1 626-503-8082</a>
+    </div>
+
+    <!-- QR code message -->
+    <div class="assistant-msg">
+      📱 Scan the QR code below to connect on WeChat:  
+      <img src="WeChat_qr.png" alt="WeChat QR" class="qr-code">
+    </div>
+
+    <!-- Suggested prompts -->
+    <div class="suggestions">
+      <button class="question">What courses do you offer?</button>
+      <button class="question">How can I register?</button>
+      <button class="question">Where are you located?</button>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+
+<script>
+const chatBody = document.getElementById('chatBody');
+const input = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+
+// --- Helpers ---
+function sendMessage(msg, sender = "user") {
+  const div = document.createElement('div');
+  div.className = sender === "user" ? "user-msg" : "assistant-msg";
+  div.innerHTML = msg;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Smarter matching for common phrasings
+function replyTo(raw) {
+  const msg = raw.toLowerCase().trim();
+
+  let reply;
+
+  if (
+    msg.includes("course") || msg.includes("class") || msg.includes("offer")
+  ) {
+    reply = `You can browse all offerings on the <a href="courses.html" target="_self"><strong>Courses</strong></a> page.<br>
+    Popular classes: AP, English Writing, Algebra I–II, Geometry, Precalculus, TOEFL/IELTS, ISEE.`;
+  } else if (
+    msg.includes("register") || msg.includes("sign up") || msg.includes("enroll")
+  ) {
+    reply = `Two quick ways to register:<br>
+    1) Go to the <a href="courses.html" target="_self"><strong>Courses</strong></a> page and choose a class.<br>
+    2) Or leave us a message via the <a href="#contact"><strong>Contact Us</strong></a> form. <br>
+    You can also email <a href="mailto:edmore.usoffice@gmail.com">edmore.usoffice@gmail.com</a> or call <a href="tel:+16265038082">+1&nbsp;626-503-8082</a>.`;
+  } else if (
+    msg.includes("where") && (msg.includes("located") || msg.includes("address"))
+  ) {
+    reply = `Edmore Academy<br>
+    We have two convenient locations:<br>
+    <strong>155 North Riverview Drive, Anaheim, CA 92808</strong><br><br>
+    
+    <strong>572 N Diamond Bar Blvd, Diamond Bar, CA 91765</strong><br>
+    Website: <a href="https://edmoreacademy.com" target="_blank">edmoreacademy.com</a><br>
+    Phone: <a href="tel:+16265038082">+1&nbsp;626-503-8082</a>`;
+  } else if (msg.includes("contact")) {
+    reply = `Best ways to reach us:<br>
+    📧 <a href="mailto:edmore.usoffice@gmail.com">edmore.usoffice@gmail.com</a><br>
+    📞 <a href="tel:+16265038082">+1&nbsp;626-503-8082</a><br>
+    Or use the <a href="#contact"><strong>Contact Us</strong></a> form below.`;
+  } else {
+    reply = `I’m happy to help! If you need detailed assistance, please email <a href="mailto:edmore.usoffice@gmail.com">edmore.usoffice@gmail.com</a> or call <a href="tel:+16265038082">+1&nbsp;626-503-8082</a>.`;
+  }
+
+  setTimeout(() => sendMessage(reply, "assistant"), 500);
+}
+
+// Send handlers
+sendBtn.onclick = () => {
+  const msg = input.value.trim();
+  if (!msg) return;
+  sendMessage(msg, "user");
+  input.value = "";
+  replyTo(msg);
+};
+input.addEventListener("keypress", e => { if (e.key === "Enter") sendBtn.click(); });
+
+// Suggested question buttons
+document.querySelectorAll(".question").forEach(btn => {
+  btn.onclick = () => { sendMessage(btn.textContent, "user"); replyTo(btn.textContent); };
+});
+
+// Close chat
+const closeBtn = document.getElementById("closeChat");
+if (closeBtn) closeBtn.onclick = () => document.getElementById("chatPopup").style.display = "none";
+</script>
+
+
+<script>
+// bilingual contact form -> mailto
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const first = document.getElementById('firstName').value || "";
+  const last = document.getElementById('lastName').value || "";
+  const email = document.getElementById('email').value || "";
+  const occ = document.getElementById('occupation').value || "";
+  const subj = document.getElementById('subject').value || "New Inquiry from Edmore Website";
+  const msg = document.getElementById('message').value || "";
+
+  const body = `Name/姓名: ${first} ${last}%0D%0AEmail/邮箱: ${email}%0D%0AOccupation/职业: ${occ}%0D%0A%0D%0AMessage/留言内容:%0D%0A${encodeURIComponent(msg)}`;
+  window.location.href = `mailto:edmore.usoffice@gmail.com?subject=${encodeURIComponent(subj)}&body=${body}`;
+});
+</script>
+
+
 </body>
 </html>
