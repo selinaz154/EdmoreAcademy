@@ -112,7 +112,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-content h2 span {
-  color: #ffd36b;
+  color: #ea6a09;
 }
 
 .hero-content p {
@@ -122,7 +122,7 @@ h1, h2, h3, h4 {
 }
 
 .cta-btn {
-  background-color: #ffd36b;
+  background-color: #ffb36b;
   color: #092c5c;
   text-decoration: none;
   padding: 12px 24px;
@@ -132,7 +132,7 @@ h1, h2, h3, h4 {
 }
 
 .cta-btn:hover {
-  background-color: #ffcc4d;
+  background-color: #ffa94d;
 }
 
 /* ===============================
@@ -833,4 +833,72 @@ h1, h2, h3, h4 {
   #contactForm .row {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* SIGNUP PAGE */
+
+.signup-body {
+    background: url('buildings2.jpeg') center/cover no-repeat fixed;
+    backdrop-filter: blur(3px);
+    font-family: 'Poppins', sans-serif;
+}
+
+.signup-section {
+    padding: 120px 20px;
+    text-align: center;
+    color: #1e2a38;
+}
+
+.signup-title {
+    font-size: 2.3rem;
+    font-weight: 600;
+}
+
+.signup-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #444;
+}
+
+.signup-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.signup-btn {
+    width: 300px;
+    padding: 25px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #1e2a38;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.signup-btn .zh {
+    display: block;
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.signup-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+}
+
+.tutor-need {
+    border-left: 6px solid #003366;
+}
+
+.tutor-volunteer {
+    border-left: 6px solid #d4af37;
 }
