@@ -944,3 +944,11 @@ nav {
   left: 0;
   top: 0;
 }
+
+@media (max-width: 768px) {
+  .hero-banner,
+  #auto-visualization {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+  }
+}
