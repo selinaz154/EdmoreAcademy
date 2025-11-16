@@ -26,6 +26,7 @@
       <a href="gallery.html">Gallery</a>
       <a href="#" class="login-btn">Log In</a>
     </nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
   </header>
 
   <!-- BACKGROUND OVERLAY -->
@@ -172,5 +173,12 @@
     gradeFilter.addEventListener('change', filterCourses);
     subjectFilter.addEventListener('change', filterCourses);
   </script>
+
+  <script>
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("open");
+}
+</script>
+
 </body>
 </html>

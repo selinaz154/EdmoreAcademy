@@ -6,33 +6,157 @@
     <title>Gallery — Edmore Academy</title>
     <style>
         :root{
-            --bg:#fafafa; --card:#fff; --muted:#666; --accent:#2b6cb0;
-            --gap:14px; --radius:8px;
+            --bg:#fafafa; 
+            --card:#fff; 
+            --muted:#666; 
+            --accent:#2b6cb0;
+            --gap:14px; 
+            --radius:8px;
         }
         html,body{height:100%}
         body{
-            margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-            background:var(--bg); color:#111; -webkit-font-smoothing:antialiased;
-        }
-        .wrap{
-            max-width:1100px; margin:28px auto; padding:20px;
+            margin:0; 
+            font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:var(--bg); 
+            color:#111; 
+            -webkit-font-smoothing:antialiased;
         }
 
-        header{
-            display:flex; gap:12px; align-items:center; justify-content:space-between;
+        /* =========================
+           NAVBAR
+        ========================== */
+        .navbar {
+            background:#ffffff;
+            padding:10px 20px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            position:sticky;
+            top:0;
+            z-index:100;
+            border-bottom:1px solid #eee;
+        }
+        .logo-section{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .logo{
+            height:40px;
+            width:auto;
+        }
+        .title-text h1{
+            font-size:1.1rem;
+            margin:0;
+        }
+        .title-text p{
+            margin:2px 0 0;
+            font-size:0.8rem;
+            color:var(--muted);
+        }
+
+        .nav-links{
+            display:flex;
+            gap:18px;
+            align-items:center;
+        }
+        .nav-links a{
+            text-decoration:none;
+            color:#222;
+            font-size:0.95rem;
+        }
+        .nav-links a:hover{
+            color:var(--accent);
+        }
+        .nav-links a.active{
+            color:var(--accent);
+            font-weight:600;
+        }
+        .login-btn{
+            padding:6px 12px;
+            border-radius:999px;
+            border:1px solid var(--accent);
+            color:var(--accent);
+        }
+        .login-btn:hover{
+            background:var(--accent);
+            color:#fff;
+        }
+        .lang-toggle{
+            font-size:0.9rem;
+        }
+
+        .hamburger{
+            display:none;
+            font-size:26px;
+            cursor:pointer;
+        }
+
+        @media (max-width:768px){
+            .nav-links{
+                position:absolute;
+                right:20px;
+                top:64px;
+                background:#fff;
+                flex-direction:column;
+                align-items:flex-start;
+                padding:14px 16px;
+                border-radius:10px;
+                box-shadow:0 4px 18px rgba(0,0,0,0.08);
+                display:none;
+            }
+            .nav-links.open{
+                display:flex;
+            }
+            .hamburger{
+                display:block;
+            }
+        }
+
+        /* =========================
+           GALLERY LAYOUT
+        ========================== */
+        .wrap{
+            max-width:1100px; 
+            margin:28px auto; 
+            padding:20px;
+        }
+
+        .gallery-header{
+            display:flex; 
+            gap:12px; 
+            align-items:center; 
+            justify-content:space-between;
             margin-bottom:18px;
         }
-        header h1{font-size:1.2rem; margin:0}
-        .controls{display:flex; gap:8px; align-items:center;}
+        .gallery-header h1{
+            font-size:1.4rem; 
+            margin:0;
+        }
+        .controls{
+            display:flex; 
+            gap:8px; 
+            align-items:center;
+        }
         input[type="search"]{
-            padding:8px 12px; border-radius:999px; border:1px solid #ddd; min-width:200px;
+            padding:8px 12px; 
+            border-radius:999px; 
+            border:1px solid #ddd; 
+            min-width:200px;
             outline:none;
         }
         select, button{
-            padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:var(--card);
+            padding:8px 12px; 
+            border-radius:8px; 
+            border:1px solid #ddd; 
+            background:var(--card);
             cursor:pointer;
         }
-        .stats{font-size:0.9rem; color:var(--muted); margin-left:12px}
+        .stats{
+            font-size:0.9rem; 
+            color:var(--muted); 
+            margin-left:12px;
+        }
 
         /* Gallery grid */
         .grid{
@@ -41,72 +165,157 @@
             gap:var(--gap);
         }
         .card{
-            background:var(--card); border-radius:var(--radius); overflow:hidden;
-            box-shadow:0 1px 2px rgba(0,0,0,0.04); display:flex; flex-direction:column;
+            background:var(--card); 
+            border-radius:var(--radius); 
+            overflow:hidden;
+            box-shadow:0 1px 2px rgba(0,0,0,0.04); 
+            display:flex; 
+            flex-direction:column;
             transition:transform .18s ease, box-shadow .18s ease;
+            cursor:pointer;
         }
-        .card:hover{ transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+        .card:hover{ 
+            transform:translateY(-6px); 
+            box-shadow:0 8px 20px rgba(0,0,0,0.08); 
+        }
         .thumb{
-            width:100%; height:0; padding-bottom:66.66%; position:relative; background:#eee;
+            width:100%; 
+            height:0; 
+            padding-bottom:66.66%; 
+            position:relative; 
+            background:#eee;
         }
         .thumb img{
-            position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+            position:absolute; 
+            inset:0; 
+            width:100%; 
+            height:100%; 
+            object-fit:cover;
         }
         .meta{
-            padding:10px 12px; display:flex; align-items:center; justify-content:space-between;
+            padding:10px 12px; 
+            display:flex; 
+            align-items:center; 
+            justify-content:space-between;
             gap:8px;
         }
-        .title{font-size:0.95rem; margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-        .tags{display:flex; gap:6px; align-items:center}
-        .tag{font-size:0.75rem; color:var(--muted); background:#f6f8fb; padding:4px 8px; border-radius:999px}
+        .title{
+            font-size:0.95rem; 
+            margin:0; 
+            overflow:hidden; 
+            text-overflow:ellipsis; 
+            white-space:nowrap;
+        }
+        .tags{
+            display:flex; 
+            gap:6px; 
+            align-items:center;
+        }
+        .tag{
+            font-size:0.75rem; 
+            color:var(--muted); 
+            background:#f6f8fb; 
+            padding:4px 8px; 
+            border-radius:999px;
+        }
 
         /* Lightbox/modal */
         .modal{
-            position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-            background:rgba(0,0,0,0.6); z-index:60; padding:20px;
+            position:fixed; 
+            inset:0; 
+            display:none; 
+            align-items:center; 
+            justify-content:center;
+            background:rgba(0,0,0,0.6); 
+            z-index:60; 
+            padding:20px;
         }
         .modal.open{display:flex}
         .modal-inner{
-            max-width:95%; max-height:95%; background:transparent; position:relative;
-            display:flex; gap:12px; align-items:center;
+            max-width:95%; 
+            max-height:95%; 
+            background:transparent; 
+            position:relative;
+            display:flex; 
+            gap:12px; 
+            align-items:center;
         }
-        .modal img{max-width:calc(100vw - 200px); max-height:calc(100vh - 120px); width:auto; height:auto; border-radius:6px;}
+        .modal img{
+            max-width:calc(100vw - 200px); 
+            max-height:calc(100vh - 120px); 
+            width:auto; 
+            height:auto; 
+            border-radius:6px;
+        }
         .modal .info{
-            color:#fff; max-width:220px; font-size:0.95rem;
+            color:#fff; 
+            max-width:220px; 
+            font-size:0.95rem;
         }
         .btn-icon{
-            background:rgba(255,255,255,0.12); border:none; color:#fff; padding:8px; border-radius:6px; cursor:pointer;
+            background:rgba(255,255,255,0.12); 
+            border:none; 
+            color:#fff; 
+            padding:8px; 
+            border-radius:6px; 
+            cursor:pointer;
         }
-        .controls-vert{display:flex; flex-direction:column; gap:8px; align-items:center}
+        .controls-vert{
+            display:flex; 
+            flex-direction:column; 
+            gap:8px; 
+            align-items:center;
+        }
         @media (max-width:640px){
-            .modal img{max-width:100%; max-height:70vh}
-            .modal .info{display:none}
+            .modal img{
+                max-width:100%; 
+                max-height:70vh;
+            }
+            .modal .info{
+                display:none;
+            }
         }
+
         /* empty state */
-        .empty{padding:40px; text-align:center; color:var(--muted); border:1px dashed #eee; border-radius:8px}
+        .empty{
+            padding:40px; 
+            text-align:center; 
+            color:var(--muted); 
+            border:1px dashed #eee; 
+            border-radius:8px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- NAVBAR -->
     <header class="navbar">
-    <div class="logo-section">
-      <img src="logo.png" alt="Edmore Academy Logo" class="logo" />
-      <div class="title-text">
-        <h1 data-en="Edmore Academy" data-zh="艾德摩尔学院">Edmore Academy</h1>
-        <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询・个性辅导・学术课程">Counseling, tutoring, and courses</p>
-      </div>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" data-en="Home" data-zh="首页">Home</a>
-      <a href="about.html" class="active" data-en="About" data-zh="关于我们">About</a>
-      <a href="courses.html" data-en="Courses" data-zh="课程">Courses</a>
-      <a href="gallery.html" data-en="Gallery" data-zh="相册">Gallery</a>
-      <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
-      <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
-    </nav>
-  </header>
-  
+        <div class="logo-section">
+            <img src="logo.png" alt="Edmore Academy Logo" class="logo" />
+            <div class="title-text">
+                <h1 data-en="Edmore Academy" data-zh="艾德摩尔学院">Edmore Academy</h1>
+                <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询・个性辅导・学术课程">
+                    Counseling, tutoring, and courses
+                </p>
+            </div>
+        </div>
+
+        <nav class="nav-links" id="nav-menu">
+            <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+            <a href="about.html" data-en="About" data-zh="关于我们">About</a>
+            <a href="courses.html" data-en="Courses" data-zh="课程">Courses</a>
+            <a href="signup.html" data-en="Signup" data-zh="报名">Signup</a>
+            <a href="gallery.html" class="active" data-en="Gallery" data-zh="相册">Gallery</a>
+            <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
+            <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </header>
+
+    <!-- GALLERY CONTENT -->
     <div class="wrap">
-        <header>
+        <header class="gallery-header">
             <div style="display:flex;align-items:center;gap:12px;">
                 <h1>Gallery</h1>
                 <div class="stats" id="count">0 items</div>
@@ -187,11 +396,11 @@
                         <div class="tags"><span class="tag">event</span></div>
                     </div>
                 </article>
-
-                <!-- Add more placeholder cards as needed -->
             </div>
 
-            <div id="empty" class="empty" style="display:none">No items found. Try clearing filters.</div>
+            <div id="empty" class="empty" style="display:none">
+                No items found. Try clearing filters.
+            </div>
         </main>
     </div>
 
@@ -211,6 +420,7 @@
         </div>
     </div>
 
+    <!-- Gallery JS -->
     <script>
         // Simple gallery behaviors: filter, search, lightbox
         (function(){
@@ -226,7 +436,9 @@
                 countEl.textContent = n + (n === 1 ? ' item' : ' items');
             }
 
-            function normalize(s){ return (s||'').toString().toLowerCase().trim(); }
+            function normalize(s){ 
+                return (s||'').toString().toLowerCase().trim(); 
+            }
 
             function matches(card, q, tag){
                 const title = normalize(card.dataset.title);
@@ -252,7 +464,9 @@
             search.addEventListener('input', refresh);
             filter.addEventListener('change', refresh);
             clear.addEventListener('click', ()=>{
-                search.value = ''; filter.value = 'all'; refresh();
+                search.value = ''; 
+                filter.value = 'all'; 
+                refresh();
             });
 
             // Lightbox
@@ -288,10 +502,13 @@
                 modalImg.src = '';
                 document.body.style.overflow = '';
             }
-            function step(n){ const idx = Number(modal.dataset.index) || 0; openLightbox(idx + n); }
+            function step(n){ 
+                const idx = Number(modal.dataset.index) || 0; 
+                openLightbox(idx + n); 
+            }
 
             // Click on card opens modal
-            cards.forEach((c,i)=>{
+            cards.forEach((c)=>{
                 c.addEventListener('click', ()=>{
                     rebuildVisible();
                     const index = visibleList.indexOf(c);
@@ -300,7 +517,9 @@
             });
 
             closeBtn.addEventListener('click', closeLightbox);
-            modal.addEventListener('click', (e)=>{ if(e.target === modal) closeLightbox(); });
+            modal.addEventListener('click', (e)=>{ 
+                if(e.target === modal) closeLightbox(); 
+            });
             prevBtn.addEventListener('click', ()=>step(-1));
             nextBtn.addEventListener('click', ()=>step(1));
 
@@ -316,5 +535,20 @@
             refresh();
         })();
     </script>
+
+    <!-- Navbar JS (hamburger) -->
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById("nav-menu");
+            nav.classList.toggle("open");
+        }
+    </script>
+
+<script>
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("open");
+}
+</script>
+
 </body>
-</html></div>
+</html>

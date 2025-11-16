@@ -26,6 +26,8 @@
       <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
       <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
     </nav>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
   </header>
 
   <!-- FIXED BACKGROUND -->
@@ -114,5 +116,12 @@
       switchLanguage();
     });
   </script>
+
+  <script>
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("open");
+}
+</script>
+
 </body>
 </html>

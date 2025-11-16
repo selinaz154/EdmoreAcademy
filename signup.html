@@ -27,6 +27,8 @@
             <a href="gallery.html">Gallery</a>
             <a href="signup.html" class="active">Signup</a>
         </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
     </header>
 
     <!-- MAIN SECTION -->
@@ -53,6 +55,13 @@
 
         </div>
     </section>
+
+    <script>
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("open");
+}
+</script>
+
 
 </body>
 </html>
