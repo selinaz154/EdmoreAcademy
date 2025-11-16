@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gallery — Edmore Academy</title>
+    <style>
+        :root{
+            --bg:#fafafa; --card:#fff; --muted:#666; --accent:#2b6cb0;
+            --gap:14px; --radius:8px;
+        }
+        html,body{height:100%}
+        body{
+            margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:var(--bg); color:#111; -webkit-font-smoothing:antialiased;
+        }
+        .wrap{
+            max-width:1100px; margin:28px auto; padding:20px;
+        }
+
+        header{
+            display:flex; gap:12px; align-items:center; justify-content:space-between;
+            margin-bottom:18px;
+        }
+        header h1{font-size:1.2rem; margin:0}
+        .controls{display:flex; gap:8px; align-items:center;}
+        input[type="search"]{
+            padding:8px 12px; border-radius:999px; border:1px solid #ddd; min-width:200px;
+            outline:none;
+        }
+        select, button{
+            padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:var(--card);
+            cursor:pointer;
+        }
+        .stats{font-size:0.9rem; color:var(--muted); margin-left:12px}
+
+        /* Gallery grid */
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+            gap:var(--gap);
+        }
+        .card{
+            background:var(--card); border-radius:var(--radius); overflow:hidden;
+            box-shadow:0 1px 2px rgba(0,0,0,0.04); display:flex; flex-direction:column;
+            transition:transform .18s ease, box-shadow .18s ease;
+        }
+        .card:hover{ transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+        .thumb{
+            width:100%; height:0; padding-bottom:66.66%; position:relative; background:#eee;
+        }
+        .thumb img{
+            position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+        }
+        .meta{
+            padding:10px 12px; display:flex; align-items:center; justify-content:space-between;
+            gap:8px;
+        }
+        .title{font-size:0.95rem; margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+        .tags{display:flex; gap:6px; align-items:center}
+        .tag{font-size:0.75rem; color:var(--muted); background:#f6f8fb; padding:4px 8px; border-radius:999px}
+
+        /* Lightbox/modal */
+        .modal{
+            position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+            background:rgba(0,0,0,0.6); z-index:60; padding:20px;
+        }
+        .modal.open{display:flex}
+        .modal-inner{
+            max-width:95%; max-height:95%; background:transparent; position:relative;
+            display:flex; gap:12px; align-items:center;
+        }
+        .modal img{max-width:calc(100vw - 200px); max-height:calc(100vh - 120px); width:auto; height:auto; border-radius:6px;}
+        .modal .info{
+            color:#fff; max-width:220px; font-size:0.95rem;
+        }
+        .btn-icon{
+            background:rgba(255,255,255,0.12); border:none; color:#fff; padding:8px; border-radius:6px; cursor:pointer;
+        }
+        .controls-vert{display:flex; flex-direction:column; gap:8px; align-items:center}
+        @media (max-width:640px){
+            .modal img{max-width:100%; max-height:70vh}
+            .modal .info{display:none}
+        }
+        /* empty state */
+        .empty{padding:40px; text-align:center; color:var(--muted); border:1px dashed #eee; border-radius:8px}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <h1>Gallery</h1>
+                <div class="stats" id="count">0 items</div>
+            </div>
+
+            <div class="controls">
+                <input id="search" type="search" placeholder="Search title or tag" aria-label="Search gallery">
+                <select id="filter">
+                    <option value="all">All tags</option>
+                    <option value="project">Project</option>
+                    <option value="event">Event</option>
+                    <option value="student">Student</option>
+                    <option value="staff">Staff</option>
+                </select>
+                <button id="clear">Clear</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="grid" id="grid">
+                <!-- Sample items: replace src with real images -->
+                <article class="card" data-tags="project student" data-title="Workshop — Intro to JavaScript">
+                    <div class="thumb">
+                        <img src="https://via.placeholder.com/800x533?text=Workshop+1" alt="Workshop — Intro to JavaScript">
+                    </div>
+                    <div class="meta">
+                        <h3 class="title">Workshop — Intro to JavaScript</h3>
+                        <div class="tags"><span class="tag">project</span></div>
+                    </div>
+                </article>
+
+                <article class="card" data-tags="event" data-title="Open Day 2024">
+                    <div class="thumb">
+                        <img src="https://via.placeholder.com/800x533?text=Open+Day" alt="Open Day 2024">
+                    </div>
+                    <div class="meta">
+                        <h3 class="title">Open Day 2024</h3>
+                        <div class="tags"><span class="tag">event</span></div>
+                    </div>
+                </article>
+
+                <article class="card" data-tags="student" data-title="Student Project A">
+                    <div class="thumb">
+                        <img src="https://via.placeholder.com/800x533?text=Student+Project+A" alt="Student Project A">
+                    </div>
+                    <div class="meta">
+                        <h3 class="title">Student Project A</h3>
+                        <div class="tags"><span class="tag">student</span></div>
+                    </div>
+                </article>
+
+                <article class="card" data-tags="staff event" data-title="Staff Retreat">
+                    <div class="thumb">
+                        <img src="https://via.placeholder.com/800x533?text=Staff+Retreat" alt="Staff Retreat">
+                    </div>
+                    <div class="meta">
+                        <h3 class="title">Staff Retreat</h3>
+                        <div class="tags"><span class="tag">staff</span></div>
+                    </div>
+                </article>
+
+                <article class="card" data-tags="project" data-title="Capstone Demo">
+                    <div class="thumb">
+                        <img src="https://via.placeholder.com/800x533?text=Capstone+Demo" alt="Capstone Demo">
+                    </div>
+                    <div class="meta">
+                        <h3 class="title">Capstone Demo</h3>
+                        <div class="tags"><span class="tag">project</span></div>
+                    </div>
+                </article>
+
+                <article class="card" data-tags="event student" data-title="Hackathon Night">
+                    <div class="thumb">
+                        <img src="https://via.placeholder.com/800x533?text=Hackathon+Night" alt="Hackathon Night">
+                    </div>
+                    <div class="meta">
+                        <h3 class="title">Hackathon Night</h3>
+                        <div class="tags"><span class="tag">event</span></div>
+                    </div>
+                </article>
+
+                <!-- Add more placeholder cards as needed -->
+            </div>
+
+            <div id="empty" class="empty" style="display:none">No items found. Try clearing filters.</div>
+        </main>
+    </div>
+
+    <!-- Modal / Lightbox -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-inner" role="document">
+            <button id="prev" class="btn-icon" aria-label="Previous">&larr;</button>
+            <img id="modalImg" src="" alt="">
+            <button id="next" class="btn-icon" aria-label="Next">&rarr;</button>
+            <div class="controls-vert" style="margin-left:12px;">
+                <button id="close" class="btn-icon" aria-label="Close">✕</button>
+                <div class="info" id="modalInfo">
+                    <h2 id="modal-title" style="margin:0 0 8px 0;font-size:1.05rem;color:#fff"></h2>
+                    <div id="modal-tags" style="opacity:0.85"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple gallery behaviors: filter, search, lightbox
+        (function(){
+            const grid = document.getElementById('grid');
+            const cards = Array.from(grid.querySelectorAll('.card'));
+            const search = document.getElementById('search');
+            const filter = document.getElementById('filter');
+            const clear = document.getElementById('clear');
+            const countEl = document.getElementById('count');
+            const empty = document.getElementById('empty');
+
+            function updateCount(n){
+                countEl.textContent = n + (n === 1 ? ' item' : ' items');
+            }
+
+            function normalize(s){ return (s||'').toString().toLowerCase().trim(); }
+
+            function matches(card, q, tag){
+                const title = normalize(card.dataset.title);
+                const tags = normalize(card.dataset.tags);
+                const byQuery = !q || title.includes(q) || tags.includes(q);
+                const byTag = tag === 'all' || tags.split(' ').includes(tag);
+                return byQuery && byTag;
+            }
+
+            function refresh(){
+                const q = normalize(search.value);
+                const tag = filter.value;
+                let visible = 0;
+                cards.forEach(c=>{
+                    const ok = matches(c, q, tag);
+                    c.style.display = ok ? '' : 'none';
+                    if(ok) visible++;
+                });
+                updateCount(visible);
+                empty.style.display = visible ? 'none' : '';
+            }
+
+            search.addEventListener('input', refresh);
+            filter.addEventListener('change', refresh);
+            clear.addEventListener('click', ()=>{
+                search.value = ''; filter.value = 'all'; refresh();
+            });
+
+            // Lightbox
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modalImg');
+            const modalTitle = document.getElementById('modal-title');
+            const modalTags = document.getElementById('modal-tags');
+            const closeBtn = document.getElementById('close');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
+
+            let visibleList = [];
+            function rebuildVisible(){
+                visibleList = cards.filter(c => c.style.display !== 'none');
+            }
+
+            function openLightbox(index){
+                rebuildVisible();
+                if(visibleList.length === 0) return;
+                index = Math.max(0, Math.min(index, visibleList.length-1));
+                const card = visibleList[index];
+                const img = card.querySelector('img');
+                modalImg.src = img.src;
+                modalImg.alt = img.alt || card.dataset.title || '';
+                modalTitle.textContent = card.dataset.title || '';
+                modalTags.textContent = card.dataset.tags || '';
+                modal.dataset.index = index;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox(){
+                modal.classList.remove('open');
+                modalImg.src = '';
+                document.body.style.overflow = '';
+            }
+            function step(n){ const idx = Number(modal.dataset.index) || 0; openLightbox(idx + n); }
+
+            // Click on card opens modal
+            cards.forEach((c,i)=>{
+                c.addEventListener('click', ()=>{
+                    rebuildVisible();
+                    const index = visibleList.indexOf(c);
+                    if(index >= 0) openLightbox(index);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            modal.addEventListener('click', (e)=>{ if(e.target === modal) closeLightbox(); });
+            prevBtn.addEventListener('click', ()=>step(-1));
+            nextBtn.addEventListener('click', ()=>step(1));
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e)=>{
+                if(!modal.classList.contains('open')) return;
+                if(e.key === 'Escape') closeLightbox();
+                if(e.key === 'ArrowLeft') step(-1);
+                if(e.key === 'ArrowRight') step(1);
+            });
+
+            // Initial state
+            refresh();
+        })();
+    </script>
+</body>
+</html></div>
