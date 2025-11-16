@@ -1,5 +1,5 @@
 # EdmoreAcademy
 
-edmoreacademy.org
+edmoreacademy.com
 
 https://selinaz154.github.io/EdmoreAcademy/
