@@ -8,10 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
-<body class="signup-body">
+<body>
 
-    <!-- HEADER NAV shared with your main site -->
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
 <header class="navbar">
 
     <!-- Logo -->
@@ -25,54 +24,52 @@
         </div>
     </div>
 
-    <!-- Hamburger menu (MUST come BEFORE nav-links) -->
+    <!-- Hamburger menu -->
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-    <!-- Navigation links -->
+    <!-- Navigation -->
     <nav class="nav-links" id="nav-menu">
         <a href="index.html" data-en="Home" data-zh="首页">Home</a>
         <a href="about.html" data-en="About" data-zh="关于我们">About</a>
         <a href="courses.html" data-en="Courses" data-zh="课程">Courses</a>
-        <a href="signup.html" data-en="Signup" data-zh="报名">Signup</a>
-        <a href="gallery.html" class="active" data-en="Gallery" data-zh="相册">Gallery</a>
+        <a href="signup.html" class="active" data-en="Signup" data-zh="报名">Signup</a>
+        <a href="gallery.html" data-en="Gallery" data-zh="相册">Gallery</a>
         <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
         <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
     </nav>
 
 </header>
 
+<!-- MAIN SECTION -->
+<section class="signup-section">
 
-    <!-- MAIN SECTION -->
-    <section class="signup-section">
+    <h2 class="signup-title">Choose an Option</h2>
+    <p class="signup-subtitle">请选择报名类型</p>
 
-        <h2 class="signup-title">Choose an Option</h2>
-        <p class="signup-subtitle">请选择报名类型</p>
+    <div class="signup-buttons">
 
-        <div class="signup-buttons">
+        <!-- Option 1 -->
+        <a class="signup-btn tutor-need"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSdmZ0bmT2BMu_SPFFzJ0ZDMnu2qTpDSVCNwKovXoir04LpxkQ/viewform?usp=publish-editor"
+           target="_blank">
+            I need a tutor<br><span class="zh">我要找家教</span>
+        </a>
 
-            <!-- BUTTON 1 -->
-            <a class="signup-btn tutor-need"
-               href="https://docs.google.com/forms/d/e/1FAIpQLSdmZ0bmT2BMu_SPFFzJ0ZDMnu2qTpDSVCNwKovXoir04LpxkQ/viewform?usp=publish-editor"
-               target="_blank">
-               I need a tutor<br><span class="zh">我要找家教</span>
-            </a>
+        <!-- Option 2 -->
+        <a class="signup-btn tutor-volunteer"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSfDZDdJ_363oYlaKifXRVckyF_Es7wN22YqL5-mxI_plh1ZUg/viewform?usp=dialog"
+           target="_blank">
+            I am a tutor<br><span class="zh">我要做志愿者家教</span>
+        </a>
 
-            <!-- BUTTON 2 -->
-            <a class="signup-btn tutor-volunteer"
-               href="https://docs.google.com/forms/d/e/1FAIpQLSfDZDdJ_363oYlaKifXRVckyF_Es7wN22YqL5-mxI_plh1ZUg/viewform?usp=dialog"
-               target="_blank">
-               I am a tutor <br><span class="zh">我要做志愿者家教</span>
-            </a>
+    </div>
+</section>
 
-        </div>
-    </section>
-
-    <script>
+<script>
 function toggleMenu() {
     document.getElementById("nav-menu").classList.toggle("open");
 }
 </script>
-
 
 </body>
 </html>
