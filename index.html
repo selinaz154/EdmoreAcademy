@@ -388,9 +388,10 @@
   }
 
   const graphConfigs = [
+    buildRankTuition(),
     buildMapTrace(),
     buildTopTuitionBar(),
-    buildRankTuition(),
+    
     
     buildRankIntl()
     
@@ -448,7 +449,7 @@ if (g.title.includes("Map")) {
   setInterval(() => {
     currentIndex = (currentIndex + 1) % graphConfigs.length;
     showGraph(currentIndex);
-  }, 12000);
+  }, 6000);
 </script>
 
 
