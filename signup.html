@@ -11,25 +11,36 @@
 <body class="signup-body">
 
     <!-- HEADER NAV shared with your main site -->
-    <header class="navbar">
-        <div class="logo-section">
-            <img src="logo.png" alt="Edmore Logo" class="logo">
-            <div class="title-text">
-                <h1 data-en="Edmore Academy" data-zh="爱德蒙学院">Edmore Academy</h1>
-                <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询 • 个性辅导">Counseling, tutoring, and courses</p>
-            </div>
+    <!-- NAVBAR -->
+<header class="navbar">
+
+    <!-- Logo -->
+    <div class="logo-section">
+        <img src="logo.png" alt="Edmore Academy Logo" class="logo" />
+        <div class="title-text">
+            <h1 data-en="Edmore Academy" data-zh="艾德摩尔学院">Edmore Academy</h1>
+            <p data-en="Counseling, tutoring, and courses" data-zh="升学咨询・个性辅导・学术课程">
+                Counseling, tutoring, and courses
+            </p>
         </div>
+    </div>
 
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="courses.html">Courses</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="signup.html" class="active">Signup</a>
-        </nav>
+    <!-- Hamburger menu (MUST come BEFORE nav-links) -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-    </header>
+    <!-- Navigation links -->
+    <nav class="nav-links" id="nav-menu">
+        <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+        <a href="about.html" data-en="About" data-zh="关于我们">About</a>
+        <a href="courses.html" data-en="Courses" data-zh="课程">Courses</a>
+        <a href="signup.html" data-en="Signup" data-zh="报名">Signup</a>
+        <a href="gallery.html" class="active" data-en="Gallery" data-zh="相册">Gallery</a>
+        <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
+        <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
+    </nav>
+
+</header>
+
 
     <!-- MAIN SECTION -->
     <section class="signup-section">
