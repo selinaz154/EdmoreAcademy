@@ -15,78 +15,109 @@ h1, h2, h3, h4 {
 }
 
 /* ===============================
-   🌐 RESPONSIVE NAVBAR
+   FORWARD PATHWAY STYLE NAVBAR
    =============================== */
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 22px;
-  background: rgba(255, 255, 255, 0.88);
+  padding: 10px 28px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);   /* smooth & modern */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 999;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-bottom: 1px solid #e5e5e5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Logo */
 .logo {
-  height: 55px;
-  margin-right: 12px;
+  height: 48px;
 }
 
-.logo-section {
-  display: flex;
-  align-items: center;
+.title-text {
+  margin-left: 8px;
 }
 
 .title-text h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.9rem;
-  color: #092c5c;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  color: #0a2c5c;
+  letter-spacing: 0px;
 }
 
 .title-text p {
-  font-style: italic;
-  font-size: 0.9rem;
-  color: #333;
   margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+  font-style: normal;
 }
 
+/* NAV MENU */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 26px;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #092c5c;
-  font-weight: 600;
-  transition: 0.3s;
+  color: #0a2c5c;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  padding-bottom: 4px;
+  position: relative;
+  text-transform: uppercase;
 }
 
+/* Underline hover */
 .nav-links a:hover {
-  color: #e67e22;
+  color: #007bff;
 }
 
+/* ACTIVE UNDERLINE (same as screenshot) */
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: #0094ff;
+}
+
+/* Login button */
 .login-btn {
-  background: #092c5c;
+  background: #0a2c5c;
   color: white !important;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
 }
 
-/* -------- 📱 MOBILE -------- */
+/* Language toggle */
+.lang-toggle {
+  border: 1px solid #0a2c5c;
+  padding: 5px 10px;
+  letter-spacing: 0.5px;
+}
+
+/* Hamburger */
 .hamburger {
   display: none;
   font-size: 30px;
   cursor: pointer;
-  color: #092c5c;
+  color: #0a2c5c;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -98,18 +129,20 @@ h1, h2, h3, h4 {
     position: absolute;
     right: 20px;
     top: 70px;
-    width: 70%;
+    background: white;
     padding: 20px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     gap: 18px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
 
   .nav-links.show {
     display: flex;
   }
 }
+
+
+
 
 
 /* ===============================
