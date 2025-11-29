@@ -4,135 +4,40 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Gallery — Edmore Academy</title>
+
+    <!-- GLOBAL SITE STYLES -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- GALLERY PAGE CSS -->
     <style>
-        :root{
-            --bg:#fafafa; 
-            --card:#fff; 
-            --muted:#666; 
-            --accent:#2b6cb0;
-            --gap:14px; 
-            --radius:8px;
-        }
-        html,body{height:100%}
-        body{
-            margin:0; 
-            font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-            background:var(--bg); 
-            color:#111; 
-            -webkit-font-smoothing:antialiased;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================== */
-        .navbar {
-            background:#ffffff;
-            padding:10px 20px;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            position:sticky;
-            top:0;
-            z-index:100;
-            border-bottom:1px solid #eee;
-        }
-        .logo-section{
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
-        .logo{
-            height:40px;
-            width:auto;
-        }
-        .title-text h1{
-            font-size:1.1rem;
-            margin:0;
-        }
-        .title-text p{
-            margin:2px 0 0;
-            font-size:0.8rem;
-            color:var(--muted);
-        }
-
-        .nav-links{
-            display:flex;
-            gap:18px;
-            align-items:center;
-        }
-        .nav-links a{
-            text-decoration:none;
-            color:#222;
-            font-size:0.95rem;
-        }
-        .nav-links a:hover{
-            color:var(--accent);
-        }
-        .nav-links a.active{
-            color:var(--accent);
-            font-weight:600;
-        }
-        .login-btn{
-            padding:6px 12px;
-            border-radius:999px;
-            border:1px solid var(--accent);
-            color:var(--accent);
-        }
-        .login-btn:hover{
-            background:var(--accent);
-            color:#fff;
-        }
-        .lang-toggle{
-            font-size:0.9rem;
-        }
-
-        .hamburger{
-            display:none;
-            font-size:26px;
-            cursor:pointer;
-        }
-
-        @media (max-width:768px){
-            .nav-links{
-                position:absolute;
-                right:20px;
-                top:64px;
-                background:#fff;
-                flex-direction:column;
-                align-items:flex-start;
-                padding:14px 16px;
-                border-radius:10px;
-                box-shadow:0 4px 18px rgba(0,0,0,0.08);
-                display:none;
-            }
-            .nav-links.open{
-                display:flex;
-            }
-            .hamburger{
-                display:block;
-            }
-        }
-
-        /* =========================
-           GALLERY LAYOUT
-        ========================== */
+        /* PAGE WRAPPER */
         .wrap{
             max-width:1100px; 
-            margin:28px auto; 
+            margin:40px auto; 
             padding:20px;
         }
 
+        /* HEADER */
         .gallery-header{
             display:flex; 
             gap:12px; 
             align-items:center; 
             justify-content:space-between;
-            margin-bottom:18px;
+            margin-bottom:24px;
         }
         .gallery-header h1{
-            font-size:1.4rem; 
+            font-size:2.4rem; 
             margin:0;
+            color:#092c5c;
+            font-family: "Playfair Display", serif;
         }
+        .stats{
+            font-size:0.9rem; 
+            color:#666; 
+            margin-left:12px;
+        }
+
+        /* SEARCH + FILTER CONTROLS */
         .controls{
             display:flex; 
             gap:8px; 
@@ -149,26 +54,22 @@
             padding:8px 12px; 
             border-radius:8px; 
             border:1px solid #ddd; 
-            background:var(--card);
+            background:#fff;
             cursor:pointer;
         }
-        .stats{
-            font-size:0.9rem; 
-            color:var(--muted); 
-            margin-left:12px;
-        }
 
-        /* Gallery grid */
+        /* GALLERY GRID */
         .grid{
             display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-            gap:var(--gap);
+            grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+            gap:20px;
+            margin-top:20px;
         }
         .card{
-            background:var(--card); 
-            border-radius:var(--radius); 
+            background:#fff; 
+            border-radius:10px; 
             overflow:hidden;
-            box-shadow:0 1px 2px rgba(0,0,0,0.04); 
+            box-shadow:0 1px 3px rgba(0,0,0,0.08); 
             display:flex; 
             flex-direction:column;
             transition:transform .18s ease, box-shadow .18s ease;
@@ -176,13 +77,13 @@
         }
         .card:hover{ 
             transform:translateY(-6px); 
-            box-shadow:0 8px 20px rgba(0,0,0,0.08); 
+            box-shadow:0 8px 20px rgba(0,0,0,0.12); 
         }
         .thumb{
             width:100%; 
             height:0; 
-            padding-bottom:66.66%; 
-            position:relative; 
+            padding-bottom:66%; 
+            position:relative;
             background:#eee;
         }
         .thumb img{
@@ -193,41 +94,42 @@
             object-fit:cover;
         }
         .meta{
-            padding:10px 12px; 
+            padding:12px 14px; 
             display:flex; 
             align-items:center; 
             justify-content:space-between;
-            gap:8px;
         }
         .title{
-            font-size:0.95rem; 
+            font-size:1rem; 
             margin:0; 
             overflow:hidden; 
             text-overflow:ellipsis; 
             white-space:nowrap;
+            color:#092c5c;
         }
+
         .tags{
             display:flex; 
-            gap:6px; 
+            gap:6px;
             align-items:center;
         }
         .tag{
             font-size:0.75rem; 
-            color:var(--muted); 
+            color:#666; 
             background:#f6f8fb; 
             padding:4px 8px; 
             border-radius:999px;
         }
 
-        /* Lightbox/modal */
+        /* LIGHTBOX / MODAL */
         .modal{
             position:fixed; 
             inset:0; 
             display:none; 
             align-items:center; 
             justify-content:center;
-            background:rgba(0,0,0,0.6); 
-            z-index:60; 
+            background:rgba(0,0,0,0.7); 
+            z-index:200; 
             padding:20px;
         }
         .modal.open{display:flex}
@@ -243,15 +145,9 @@
         .modal img{
             max-width:calc(100vw - 200px); 
             max-height:calc(100vh - 120px); 
-            width:auto; 
-            height:auto; 
             border-radius:6px;
         }
-        .modal .info{
-            color:#fff; 
-            max-width:220px; 
-            font-size:0.95rem;
-        }
+
         .btn-icon{
             background:rgba(255,255,255,0.12); 
             border:none; 
@@ -259,37 +155,37 @@
             padding:8px; 
             border-radius:6px; 
             cursor:pointer;
+            font-size:20px;
         }
+
         .controls-vert{
             display:flex; 
             flex-direction:column; 
             gap:8px; 
             align-items:center;
         }
-        @media (max-width:640px){
-            .modal img{
-                max-width:100%; 
-                max-height:70vh;
-            }
-            .modal .info{
-                display:none;
-            }
+
+        .modal .info{
+            color:#fff; 
+            max-width:220px; 
+            font-size:0.95rem;
         }
 
-        /* empty state */
+        /* EMPTY STATE */
         .empty{
             padding:40px; 
             text-align:center; 
-            color:var(--muted); 
-            border:1px dashed #eee; 
+            color:#666; 
+            border:1px dashed #ddd; 
             border-radius:8px;
+            margin-top:20px;
         }
     </style>
+
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
 <header class="navbar">
 
     <!-- Logo -->
@@ -303,254 +199,230 @@
         </div>
     </div>
 
-    <!-- Hamburger menu (MUST come BEFORE nav-links) -->
+    <!-- Hamburger -->
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-    <!-- Navigation links -->
+    <!-- Nav links -->
     <nav class="nav-links" id="nav-menu">
-        <a href="index.html" data-en="Home" data-zh="首页">Home</a>
-        <a href="about.html" data-en="About" data-zh="关于我们">About</a>
-        <a href="courses.html" data-en="Courses" data-zh="课程">Courses</a>
-        <a href="signup.html" data-en="Signup" data-zh="报名">Signup</a>
-        <a href="gallery.html" class="active" data-en="Gallery" data-zh="相册">Gallery</a>
-        <a href="#" class="login-btn" data-en="Log In" data-zh="登录">Log In</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="courses.html">Courses</a>
+        <a href="signup.html">Signup</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="#" class="login-btn">Log In</a>
         <a href="#" id="lang-toggle" class="lang-toggle">中文</a>
     </nav>
-
 </header>
 
 
-    <!-- GALLERY CONTENT -->
-    <div class="wrap">
-        <header class="gallery-header">
-            <div style="display:flex;align-items:center;gap:12px;">
-                <h1>Gallery</h1>
-                <div class="stats" id="count">0 items</div>
-            </div>
+<!-- PAGE CONTENT -->
+<div class="wrap">
 
-            <div class="controls">
-                <input id="search" type="search" placeholder="Search title or tag" aria-label="Search gallery">
-                <select id="filter">
-                    <option value="all">All tags</option>
-                    <option value="project">Project</option>
-                    <option value="event">Event</option>
-                    <option value="student">Student</option>
-                    <option value="staff">Staff</option>
-                </select>
-                <button id="clear">Clear</button>
-            </div>
-        </header>
+    <header class="gallery-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <h1>Gallery</h1>
+            <div class="stats" id="count">0 items</div>
+        </div>
 
-        <main>
-            <div class="grid" id="grid">
-                <!-- Sample items: replace src with real images -->
-                <article class="card" data-tags="project student" data-title="Workshop — Intro to JavaScript">
-                    <div class="thumb">
-                        <img src="https://via.placeholder.com/800x533?text=Workshop+1" alt="Workshop — Intro to JavaScript">
-                    </div>
-                    <div class="meta">
-                        <h3 class="title">Workshop — Intro to JavaScript</h3>
-                        <div class="tags"><span class="tag">project</span></div>
-                    </div>
-                </article>
+        <div class="controls">
+            <input id="search" type="search" placeholder="Search by title or tag">
+            <select id="filter">
+                <option value="all">All tags</option>
+                <option value="project">Project</option>
+                <option value="event">Event</option>
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+            </select>
+            <button id="clear">Clear</button>
+        </div>
+    </header>
 
-                <article class="card" data-tags="event" data-title="Open Day 2024">
-                    <div class="thumb">
-                        <img src="https://via.placeholder.com/800x533?text=Open+Day" alt="Open Day 2024">
-                    </div>
-                    <div class="meta">
-                        <h3 class="title">Open Day 2024</h3>
-                        <div class="tags"><span class="tag">event</span></div>
-                    </div>
-                </article>
+    <!-- GALLERY GRID -->
+    <main>
+        <div class="grid" id="grid">
 
-                <article class="card" data-tags="student" data-title="Student Project A">
-                    <div class="thumb">
-                        <img src="https://via.placeholder.com/800x533?text=Student+Project+A" alt="Student Project A">
-                    </div>
-                    <div class="meta">
-                        <h3 class="title">Student Project A</h3>
-                        <div class="tags"><span class="tag">student</span></div>
-                    </div>
-                </article>
-
-                <article class="card" data-tags="staff event" data-title="Staff Retreat">
-                    <div class="thumb">
-                        <img src="https://via.placeholder.com/800x533?text=Staff+Retreat" alt="Staff Retreat">
-                    </div>
-                    <div class="meta">
-                        <h3 class="title">Staff Retreat</h3>
-                        <div class="tags"><span class="tag">staff</span></div>
-                    </div>
-                </article>
-
-                <article class="card" data-tags="project" data-title="Capstone Demo">
-                    <div class="thumb">
-                        <img src="https://via.placeholder.com/800x533?text=Capstone+Demo" alt="Capstone Demo">
-                    </div>
-                    <div class="meta">
-                        <h3 class="title">Capstone Demo</h3>
-                        <div class="tags"><span class="tag">project</span></div>
-                    </div>
-                </article>
-
-                <article class="card" data-tags="event student" data-title="Hackathon Night">
-                    <div class="thumb">
-                        <img src="https://via.placeholder.com/800x533?text=Hackathon+Night" alt="Hackathon Night">
-                    </div>
-                    <div class="meta">
-                        <h3 class="title">Hackathon Night</h3>
-                        <div class="tags"><span class="tag">event</span></div>
-                    </div>
-                </article>
-            </div>
-
-            <div id="empty" class="empty" style="display:none">
-                No items found. Try clearing filters.
-            </div>
-        </main>
-    </div>
-
-    <!-- Modal / Lightbox -->
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-inner" role="document">
-            <button id="prev" class="btn-icon" aria-label="Previous">&larr;</button>
-            <img id="modalImg" src="" alt="">
-            <button id="next" class="btn-icon" aria-label="Next">&rarr;</button>
-            <div class="controls-vert" style="margin-left:12px;">
-                <button id="close" class="btn-icon" aria-label="Close">✕</button>
-                <div class="info" id="modalInfo">
-                    <h2 id="modal-title" style="margin:0 0 8px 0;font-size:1.05rem;color:#fff"></h2>
-                    <div id="modal-tags" style="opacity:0.85"></div>
+            <!-- Item 1 -->
+            <article class="card" data-tags="project student" data-title="Workshop — Intro to JavaScript">
+                <div class="thumb">
+                    <img src="https://via.placeholder.com/800x533?text=Workshop+1" alt="">
                 </div>
+                <div class="meta">
+                    <h3 class="title">Workshop — Intro to JavaScript</h3>
+                    <div class="tags"><span class="tag">project</span></div>
+                </div>
+            </article>
+
+            <!-- Item 2 -->
+            <article class="card" data-tags="event" data-title="Open Day 2024">
+                <div class="thumb">
+                    <img src="https://via.placeholder.com/800x533?text=Open+Day" alt="">
+                </div>
+                <div class="meta">
+                    <h3 class="title">Open Day 2024</h3>
+                    <div class="tags"><span class="tag">event</span></div>
+                </div>
+            </article>
+
+            <!-- Item 3 -->
+            <article class="card" data-tags="student" data-title="Student Project A">
+                <div class="thumb">
+                    <img src="https://via.placeholder.com/800x533?text=Student+Project+A" alt="">
+                </div>
+                <div class="meta">
+                    <h3 class="title">Student Project A</h3>
+                    <div class="tags"><span class="tag">student</span></div>
+                </div>
+            </article>
+
+            <!-- Item 4 -->
+            <article class="card" data-tags="staff event" data-title="Staff Retreat">
+                <div class="thumb">
+                    <img src="https://via.placeholder.com/800x533?text=Staff+Retreat" alt="">
+                </div>
+                <div class="meta">
+                    <h3 class="title">Staff Retreat</h3>
+                    <div class="tags"><span class="tag">staff</span></div>
+                </div>
+            </article>
+
+        </div>
+
+        <div id="empty" class="empty" style="display:none">
+            No items found. Try clearing filters.
+        </div>
+    </main>
+
+</div>
+
+
+<!-- LIGHTBOX MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-inner">
+        <button id="prev" class="btn-icon">&larr;</button>
+        <img id="modalImg" src="" alt="">
+        <button id="next" class="btn-icon">&rarr;</button>
+
+        <div class="controls-vert" style="margin-left:12px;">
+            <button id="close" class="btn-icon">✕</button>
+            <div class="info" id="modalInfo">
+                <h2 id="modal-title" style="margin:0 0 8px 0"></h2>
+                <div id="modal-tags"></div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Gallery JS -->
-    <script>
-        // Simple gallery behaviors: filter, search, lightbox
-        (function(){
-            const grid = document.getElementById('grid');
-            const cards = Array.from(grid.querySelectorAll('.card'));
-            const search = document.getElementById('search');
-            const filter = document.getElementById('filter');
-            const clear = document.getElementById('clear');
-            const countEl = document.getElementById('count');
-            const empty = document.getElementById('empty');
 
-            function updateCount(n){
-                countEl.textContent = n + (n === 1 ? ' item' : ' items');
-            }
+<!-- GALLERY SCRIPT -->
+<script>
+(function() {
+    const grid = document.getElementById('grid');
+    const cards = Array.from(grid.querySelectorAll('.card'));
+    const search = document.getElementById('search');
+    const filter = document.getElementById('filter');
+    const clear = document.getElementById('clear');
+    const countEl = document.getElementById('count');
+    const empty = document.getElementById('empty');
 
-            function normalize(s){ 
-                return (s||'').toString().toLowerCase().trim(); 
-            }
+    function normalize(s){ return (s||'').toLowerCase().trim(); }
 
-            function matches(card, q, tag){
-                const title = normalize(card.dataset.title);
-                const tags = normalize(card.dataset.tags);
-                const byQuery = !q || title.includes(q) || tags.includes(q);
-                const byTag = tag === 'all' || tags.split(' ').includes(tag);
-                return byQuery && byTag;
-            }
+    function updateCount(n){
+        countEl.textContent = n + (n === 1 ? ' item' : ' items');
+    }
 
-            function refresh(){
-                const q = normalize(search.value);
-                const tag = filter.value;
-                let visible = 0;
-                cards.forEach(c=>{
-                    const ok = matches(c, q, tag);
-                    c.style.display = ok ? '' : 'none';
-                    if(ok) visible++;
-                });
-                updateCount(visible);
-                empty.style.display = visible ? 'none' : '';
-            }
+    function matches(card, q, tag){
+        const title = normalize(card.dataset.title);
+        const tags = normalize(card.dataset.tags);
+        const byQuery = !q || title.includes(q) || tags.includes(q);
+        const byTag = tag === 'all' || tags.split(' ').includes(tag);
+        return byQuery && byTag;
+    }
 
-            search.addEventListener('input', refresh);
-            filter.addEventListener('change', refresh);
-            clear.addEventListener('click', ()=>{
-                search.value = ''; 
-                filter.value = 'all'; 
-                refresh();
-            });
+    function refresh(){
+        const q = normalize(search.value);
+        const tag = filter.value;
+        let visible = 0;
+        cards.forEach(c=>{
+            const ok = matches(c, q, tag);
+            c.style.display = ok ? '' : 'none';
+            if(ok) visible++;
+        });
+        updateCount(visible);
+        empty.style.display = visible ? 'none' : '';
+    }
 
-            // Lightbox
-            const modal = document.getElementById('modal');
-            const modalImg = document.getElementById('modalImg');
-            const modalTitle = document.getElementById('modal-title');
-            const modalTags = document.getElementById('modal-tags');
-            const closeBtn = document.getElementById('close');
-            const prevBtn = document.getElementById('prev');
-            const nextBtn = document.getElementById('next');
+    search.addEventListener('input', refresh);
+    filter.addEventListener('change', refresh);
 
-            let visibleList = [];
-            function rebuildVisible(){
-                visibleList = cards.filter(c => c.style.display !== 'none');
-            }
+    clear.addEventListener('click', ()=>{
+        search.value = '';
+        filter.value = 'all';
+        refresh();
+    });
 
-            function openLightbox(index){
-                rebuildVisible();
-                if(visibleList.length === 0) return;
-                index = Math.max(0, Math.min(index, visibleList.length-1));
-                const card = visibleList[index];
-                const img = card.querySelector('img');
-                modalImg.src = img.src;
-                modalImg.alt = img.alt || card.dataset.title || '';
-                modalTitle.textContent = card.dataset.title || '';
-                modalTags.textContent = card.dataset.tags || '';
-                modal.dataset.index = index;
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-            function closeLightbox(){
-                modal.classList.remove('open');
-                modalImg.src = '';
-                document.body.style.overflow = '';
-            }
-            function step(n){ 
-                const idx = Number(modal.dataset.index) || 0; 
-                openLightbox(idx + n); 
-            }
+    /* LIGHTBOX */
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modal-title');
+    const modalTags = document.getElementById('modal-tags');
+    const closeBtn = document.getElementById('close');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
 
-            // Click on card opens modal
-            cards.forEach((c)=>{
-                c.addEventListener('click', ()=>{
-                    rebuildVisible();
-                    const index = visibleList.indexOf(c);
-                    if(index >= 0) openLightbox(index);
-                });
-            });
+    let visibleList = [];
 
-            closeBtn.addEventListener('click', closeLightbox);
-            modal.addEventListener('click', (e)=>{ 
-                if(e.target === modal) closeLightbox(); 
-            });
-            prevBtn.addEventListener('click', ()=>step(-1));
-            nextBtn.addEventListener('click', ()=>step(1));
+    function rebuildVisible(){
+        visibleList = cards.filter(c => c.style.display !== 'none');
+    }
 
-            // Keyboard navigation
-            document.addEventListener('keydown', (e)=>{
-                if(!modal.classList.contains('open')) return;
-                if(e.key === 'Escape') closeLightbox();
-                if(e.key === 'ArrowLeft') step(-1);
-                if(e.key === 'ArrowRight') step(1);
-            });
+    function openLightbox(index){
+        rebuildVisible();
+        if(visibleList.length === 0) return;
 
-            // Initial state
-            refresh();
-        })();
-    </script>
+        index = Math.max(0, Math.min(index, visibleList.length-1));
+        const card = visibleList[index];
+        const img = card.querySelector('img');
 
-    <!-- Navbar JS (hamburger) -->
-    <script>
-        function toggleMenu() {
-            var nav = document.getElementById("nav-menu");
-            nav.classList.toggle("open");
-        }
-    </script>
+        modalImg.src = img.src;
+        modalTitle.textContent = card.dataset.title;
+        modalTags.textContent = card.dataset.tags;
 
+        modal.dataset.index = index;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.card').forEach((c)=>{
+        c.addEventListener('click', ()=>{
+            rebuildVisible();
+            const index = visibleList.indexOf(c);
+            if(index >= 0) openLightbox(index);
+        });
+    });
+
+    function closeLightbox(){
+        modal.classList.remove('open');
+        modalImg.src = '';
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if(e.target === modal) closeLightbox(); });
+
+    prevBtn.addEventListener('click', ()=> step(-1));
+    nextBtn.addEventListener('click', ()=> step(1));
+
+    function step(n){
+        const idx = Number(modal.dataset.index) || 0;
+        openLightbox(idx + n);
+    }
+
+    /* Init */
+    refresh();
+})();
+</script>
+
+<!-- NAVBAR TOGGLE -->
 <script>
 function toggleMenu() {
     document.getElementById("nav-menu").classList.toggle("open");
